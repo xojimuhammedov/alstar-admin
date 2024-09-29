@@ -28,7 +28,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (token) {
       axios
-        .get(`${"http://170.64.186.24:9000/api"}/auth/getme`, header)
+        .get(`${"https://v2.centurysilkroadtravel.uz/api"}/auth/getme`, header)
         .then((res) => {
           console.log(res.data.data)
             const userinfo = res.data.data;
