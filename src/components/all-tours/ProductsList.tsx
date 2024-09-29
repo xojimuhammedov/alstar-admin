@@ -33,7 +33,7 @@ const ProductsList = () => {
   };
 
   const handleDeleteProduct = (id: string) => {
-    if (user?.phone_number) {
+    if (user?.username) {
       axios
         .delete(
           `${apiUrl}/subtours/${id}`,
