@@ -41,12 +41,13 @@ const LoginMain = () => {
     axios
       .post(`${apiUrl}/auth/signin`, userInfo)
       .then((res) => {
-        console.log(res.data.data);
-            const token = res?.data?.data?.accessToken?.token;
-            localStorage.setItem("accessToken", token);
-            setLoading(false);
-            router.push("/");
-            setloginError("Password Not Match");
+        if(res?.data?.data?.role === "superadmin"){
+          const token = res?.data?.data?.accessToken?.token;
+          localStorage.setItem("accessToken", token);
+          router.push("/");
+        }
+        setLoading(false);
+        setloginError("Password Not Match");
       })
       .catch((error) => {});
   };
@@ -91,8 +92,7 @@ const LoginMain = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
-                  {...register("password", {
-                  })}
+                  {...register("password", {})}
                 />
                 {errors.password && (
                   <span className="error-message">

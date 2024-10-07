@@ -17,7 +17,16 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
-  const token = localStorage.getItem("accessToken");
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Browserda ekanligimizni tekshiramiz
+      const accessToken = localStorage.getItem("accessToken");
+      setToken(accessToken);
+    }
+  }, []);
+
   const header = {
     headers: {
       "Content-Type": "application/json",
