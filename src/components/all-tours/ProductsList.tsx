@@ -36,14 +36,14 @@ const ProductsList = () => {
     if (user?.username) {
       axios
         .delete(
-          `${apiUrl}/subtours/${id}`,
+          `${apiUrl}/colours/${id}`,
           header
         )
         .then((res) => {
           if (res.data.success) {
             const remainingProduct = products.filter((item) => item.id !== id);
             setProducts(remainingProduct);
-            toast.success(`Product Deleted`, {
+            toast.success(`Color Deleted`, {
               position: "top-left",
             });
           }
@@ -76,7 +76,7 @@ const ProductsList = () => {
   useEffect(() => {
     axios
       .get(
-        `${apiUrl}/subtours`
+        `${apiUrl}/colours`
       )
       .then((res) => { 
         setProducts(res.data.data);
@@ -86,6 +86,8 @@ const ProductsList = () => {
       .catch((e) => console.log(e));
   }, [page, limit]);
   // get search products
+
+  console.log(products)
 
   const pageLimitArray = [
     {
@@ -109,7 +111,7 @@ const ProductsList = () => {
   const selectHandler = () => {};
   return (
     <>
-      <div className="cashier-content-area mt-[30px] px-7 ml-[300px]">
+      <div className="cashier-content-area mt-[30px] mt-[30px] ml-[300px] px-7">
         <div className="cashier-salereturns-area bg-white p-7 custom-shadow rounded-lg pt-5 mb-5">
           <div className="cashier-table-header-search-area">
             <div className="grid grid-cols-12 gap-x-5 mb-7 pb-0.5">
@@ -137,11 +139,11 @@ const ProductsList = () => {
                     <div className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
                     
                       <div className="cashier-salereturns-table-dateF max-w-fit	 ml-5">
-                        <h5>Title - Uz</h5>
+                        <h5>Rang - Uz</h5>
                       </div> 
-                      {/* <div className="cashier-salereturns-table-companyF ml-5">
-                        <h5>Text - Uz</h5>
-                      </div> */}
+                      <div className="cashier-salereturns-table-companyF ml-5">
+                        <h5>Rang - English</h5>
+                      </div>
                       
 
                       <div className="cashier-salereturns-table-actionF">
@@ -159,9 +161,9 @@ const ProductsList = () => {
                           <div className="cashier-salereturns-table-dateF ml-5">
                             <span> {item.name_uz} </span>
                           </div> 
-                          {/* <div className="cashier-salereturns-table-customerF ">
-                            <span>{item.text_uz}</span>
-                          </div> */}
+                          <div className="cashier-salereturns-table-customerF ">
+                            <span>{item.name_en}</span>
+                          </div>
                        
                           <div className="cashier-salereturns-table-actionF">
                             <div className="dropdown">

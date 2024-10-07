@@ -60,4 +60,34 @@ export const menuData: MenuItem[] = [
       },
     ],
   },
+  {
+    id: 9,
+    text: "Rang turlari",
+    icon: BlogIcon,
+    submenu: [
+      {
+        text: "Rang turlari",
+        link: "/blogs",
+      },
+      {
+        text: "Rang turlari yaratish",
+        link: "/create-blog",
+      },
+    ],
+  },
+  {
+    id: 10,
+    text: "Rang",
+    icon: BlogIcon,
+    submenu: [
+      {
+        text: "Rang",
+        link: "/tours",
+      },
+      {
+        text: "Rang yaratish",
+        link: "/create-tours",
+      },
+    ],
+  },
 ];

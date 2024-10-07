@@ -14,11 +14,8 @@ interface FormData {
   name_uz: string;
   name_en: string;
   name_ru: string;
-  text_uz: string;
-  text_en: string;
-  text_ru: string;
-  tours_id: string;
-  images: [];
+  collectionId: string;
+  file:string;
 }
 
 const CreateServiceMain = () => {
@@ -38,50 +35,33 @@ const CreateServiceMain = () => {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const formData = new FormData();
 
-    if (data.images && data.images.length) {
-      for (let i = 0; i < data.images.length; i++) {
-        formData.append("images", data.images[i]);
+    if (data.file && data.file.length) {
+      for (let i = 0; i < data.file.length; i++) {
+        formData.append("file", data.file[i]);
       }
     }
 
     formData.append("name_uz", data.name_uz);
     formData.append("name_en", data.name_en);
     formData.append("name_ru", data.name_ru);
-    formData.append("text_uz", data.text_uz);
-    formData.append("text_en", data.text_en);
-    formData.append("text_ru", data.text_ru);
-    formData.append("tours_id", data.tours_id);
+    formData.append("collectionId", data.collectionId);
 
     axios
-      .post(`${apiUrl}/subtours/`, formData, {
+      .post(`${apiUrl}/colours/`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => {
-        switch (res.data.message) {
-          case "Sub tours was created succesfully!":
-            toast.success(`Hudud yaratildi!🎉`, {
+            toast.success(`Rang yaratildi!🎉`, {
               position: "top-left",
             });
             reset();
             setupload(false);
-            break;
-          case "custom error":
-            reset();
-            setupload(false);
-            setloginError("something is wrong");
-            toast.error(`something is wrong`, {
-              position: "top-left",
-            });
-            break;
-          default:
-            break;
-        }
       })
       .catch((error) => {
-        if (error.response.status === 403 || error.response.status === 403) {
+        if (error.response.status === 403 || error.response.status === 401) {
           toast.error(`Qaytadan login qiling!`, {
             position: "top-left",
           });
@@ -94,7 +74,7 @@ const CreateServiceMain = () => {
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/tours/`)
+      .get(`${apiUrl}/collections/`)
       .then((res) => {
         setBlogs(res.data.data);
         // setotalPages(res.data.totalPages);
@@ -107,10 +87,10 @@ const CreateServiceMain = () => {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="cashier-content-area mt-[30px] px-7">
+        className="cashier-content-area mt-[30px] ml-[300px] px-7">
         <div className="cashier-addsupplier-area bg-white p-7 custom-shadow rounded-lg pt-5 mb-5">
           <h4 className="text-[20px] font-bold text-heading mb-9">
-            Ichki tour yaratish
+           Rang yaratish
           </h4>
           <div className="grid grid-cols-12 gap-x-5">
             <div className="lg:col-span-4 md:col-span-6 col-span-12">
@@ -175,86 +155,20 @@ const CreateServiceMain = () => {
               </div>
             </div>
 
-            {/* Text (Uzbek) */}
-            <div className="lg:col-span-4 md:col-span-6 col-span-12">
-              <div className="cashier-select-field mb-5">
-                <h5 className="text-[15px] text-heading font-semibold mb-3">
-                  {" "}
-                  Text (Uzbek)
-                </h5>
-                <div className="cashier-input-field-style">
-                  <div className="single-input-field w-full">
-                    <input
-                      type="text"
-                      placeholder="Text (Uzbek)"
-                      {...register("text_uz", {
-                        required: "Text (Uzbek) is required",
-                      })}
-                    />
-                    {errors.text_uz && <span>{errors.text_uz.message}</span>}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Text (English) */}
-            <div className="lg:col-span-4 md:col-span-6 col-span-12">
-              <div className="cashier-select-field mb-5">
-                <h5 className="text-[15px] text-heading font-semibold mb-3">
-                  {" "}
-                  Text (English)
-                </h5>
-                <div className="cashier-input-field-style">
-                  <div className="single-input-field w-full">
-                    <input
-                      type="text"
-                      placeholder="Text (English)"
-                      {...register("text_en", {
-                        required: "Text (English) is required",
-                      })}
-                    />
-                    {errors.text_en && <span>{errors.text_en.message}</span>}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Text (Russian) */}
-            <div className="lg:col-span-4 md:col-span-6 col-span-12">
-              <div className="cashier-select-field mb-5">
-                <h5 className="text-[15px] text-heading font-semibold mb-3">
-                  {" "}
-                  Text (Russian)
-                </h5>
-                <div className="cashier-input-field-style">
-                  <div className="single-input-field w-full">
-                    <input
-                      type="text"
-                      placeholder="Text (Russian)"
-                      {...register("text_ru", {
-                        required: "Text (Russian) is required",
-                      })}
-                    />
-                    {errors.text_ru && <span>{errors.text_ru.message}</span>}
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div className="lg:col-span-4 md:col-span-6 col-span-12">
               <div className="cashier-select-field mb-5">
                 <h5 className="text-[15px] text-heading font-semibold mb-3">
                   {" "}
-                  Mashhur joylarning rasmlarini yuklang
+                  Rang rasmini yuklang
                 </h5>
                 <div className="cashier-input-field-style">
                   <div className="single-input-field w-full">
                     <input
                       type="file"
                       placeholder="Add Product Rating"
-                      {...register("images")}
+                      {...register("file")}
                       style={{ padding: 0 }}
-                      multiple
                       required
                     />
                   </div>
@@ -270,12 +184,12 @@ const CreateServiceMain = () => {
                 <div className="cashier-input-field-style">
                   <div className="single-input-field w-full">
                     <select
-                      {...register("tours_id", {
-                        required: "Hudud (Uzbek) is required",
+                      {...register("collectionId", {
+                        required: "Rang turi (Uzbek) is required",
                       })}
-                      name="tours_id">
+                      name="collectionId">
                       <option selected value="Tanlang">
-                       Tanlang
+                        Tanlang
                       </option>
                       {blogs.map((item: any, index: any) => (
                         <option key={index} value={item.id}>

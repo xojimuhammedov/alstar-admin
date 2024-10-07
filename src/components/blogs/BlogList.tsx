@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import updateIcon from "../../../public/assets/img/icon/action-2.png";
@@ -13,15 +13,10 @@ import NiceSelectThree from "@/utils/NiceSelectThree";
 import apiUrl from "@/utils/api";
 
 export interface DataType {
-  id:string
+  id: string;
   name_uz: string;
   name_en: string;
   name_ru: string;
-  text_uz: string;
-  text_en: string;
-  text_ru: string;
-  link: string; 
-  images: string; 
 }
 
 const BlogList = () => {
@@ -41,16 +36,12 @@ const BlogList = () => {
 
   const handleDeleteProduct = (id: string) => {
     axios
-      .delete(
-        `${apiUrl}/blogs/${id}`,
-        header
-      )
+      .delete(`${apiUrl}/collections/${id}`, header)
       .then((res) => {
-        console.log(res)
         if (res.data.success) {
           const remainingBlogs = blogs.filter((item) => item.id !== id);
           setBlogs(remainingBlogs);
-          toast.success(`Blog o'chirildi`, {
+          toast.success(`Rang turi o'chirildi`, {
             position: "top-left",
           });
         }
@@ -72,7 +63,9 @@ const BlogList = () => {
   const handleInputChange = (e: any) => {
     setSearchValue(e.target.value);
     axios
-      .get(`${process.env.BASE_URL}/service/search-service?search=${searchValue}`)
+      .get(
+        `${process.env.BASE_URL}/service/search-service?search=${searchValue}`
+      )
       .then((res) => {
         setBlogs(res.data);
       })
@@ -81,8 +74,8 @@ const BlogList = () => {
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/Blogs `)
-      .then((res) => { 
+      .get(`${apiUrl}/collections`)
+      .then((res) => {
         setBlogs(res.data.data);
         setotalPages(res.data.totalPages);
         setcurrentPage(res.data.currentPage);
@@ -113,7 +106,7 @@ const BlogList = () => {
   const selectHandler = () => {};
   return (
     <>
-      <div className="cashier-content-area mt-[30px] px-7">
+      <div className="cashier-content-area  mt-[30px] ml-[300px] px-7">
         <div className="cashier-salereturns-area bg-white p-7 custom-shadow rounded-lg pt-5 mb-5">
           <div className="cashier-table-header-search-area">
             <div className="grid grid-cols-12 gap-x-5 mb-7 pb-0.5">
@@ -130,7 +123,6 @@ const BlogList = () => {
                   </span>
                 </div>
               </div>
-              
             </div>
           </div>
 
@@ -140,15 +132,13 @@ const BlogList = () => {
                 <div className="cashier-salereturns-table-innerD">
                   <div className="cashier-salereturns-table-inner-wrapperD border border-solid border-grayBorder border-b-0 mb-7">
                     <div className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
-                   
                       <div className="cashier-salereturns-table-dateF  ml-5">
-                        <h5>Blog nomi</h5>
-                      </div>  
+                        <h5>Rang turi nomi (Uzbek)</h5>
+                      </div>
 
                       <div className="cashier-salereturns-table-dateF  ml-5">
-                        <h5>Youtube link</h5>
-                      </div> 
-                      
+                        <h5>Rang turi nomi (English)</h5>
+                      </div>
 
                       <div className="cashier-salereturns-table-actionF">
                         <h5>Action</h5>
@@ -158,25 +148,20 @@ const BlogList = () => {
                     {blogs.map((item) => (
                       <div
                         key={item.id}
-                        className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12"
-                      >
-                       
+                        className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
                         <div className="cashier-salereturns-table-dateF ml-5">
                           <span className="capitalize"> {item.name_uz} </span>
-                        </div> 
+                        </div>
 
                         <div className="cashier-salereturns-table-dateF ml-5">
-                          <span className="capitalize"> {item.link} </span>
-                        </div> 
-                        
-                        
+                          <span className="capitalize"> {item.name_en} </span>
+                        </div>
 
                         <div className="cashier-salereturns-table-actionF">
                           <div className="dropdown">
                             <button
                               onClick={() => handleOpen(item.id)}
-                              className="common-action-menu-style"
-                            >
+                              className="common-action-menu-style">
                               Action
                               <i className="fa-sharp fa-solid fa-caret-down"></i>
                             </button>
@@ -186,19 +171,17 @@ const BlogList = () => {
                                 display: `${
                                   item.id === match && open ? "block" : "none"
                                 }`,
-                              }}
-                            >
+                              }}>
                               <button className="dropdown-menu-item">
                                 <Image src={updateIcon} alt="icon not found" />
 
                                 <Link href={`blogs/blogs-update/${item.id}`}>
-                                Edit
+                                  Edit
                                 </Link>
                               </button>
                               <button
                                 onClick={() => handleDeleteProduct(item.id)}
-                                className="dropdown-menu-item"
-                              >
+                                className="dropdown-menu-item">
                                 <Image src={deleteIcon} alt="icon not found" />
                                 <span>Delete</span>
                               </button>
@@ -237,7 +220,7 @@ const BlogList = () => {
             </>
           ) : (
             <>
-               <ChartPreloader/>
+              <ChartPreloader />
             </>
           )}
         </div>

@@ -59,7 +59,7 @@ const BlogList = () => {
   const handleDeleteProduct = (id: string) => {
     axios
       .delete(
-        `${process.env.BASE_URL}/cars/${id}`,
+        `${process.env.BASE_URL}/colours/${id}`,
         header
       )
       .then((res) => {
@@ -98,7 +98,7 @@ const BlogList = () => {
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/cars`)
+      .get(`${apiUrl}/colours`)
       .then((res) => { 
         setBlogs(res.data.data);
         setotalPages(res.data.totalPages);
@@ -130,7 +130,7 @@ const BlogList = () => {
   const selectHandler = () => {};
   return (
     <>
-      <div className="cashier-content-area mt-[30px] px-7">
+      <div className="cashier-content-area mt-[30px] ml-[300px] px-7">
         <div className="cashier-salereturns-area bg-white p-7 custom-shadow rounded-lg pt-5 mb-5">
          
 
@@ -142,22 +142,11 @@ const BlogList = () => {
                     <div className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
                    
                     <div className="cashier-salereturns-table-dateF  ml-5">
-                        <h5>Rangi</h5>
+                        <h5>Rang nomi (Uzbek)</h5>
                       </div>
                       <div className="cashier-salereturns-table-dateF  ml-5">
-                        <h5>Brand</h5>
+                        <h5>Rang nomi (English)</h5>
                       </div>
-                      <div className="cashier-salereturns-table-referenceF">
-                        <h5>Model</h5>
-                      </div> 
-                      <div className="cashier-salereturns-table-referenceF">
-                        <h5>Kategoriya</h5>
-                      </div> 
-                      <div className="cashier-salereturns-table-referenceF">
-                        <h5>Lokatsiya</h5>
-                      </div>  
-
-                    
 
 
                       <div className="cashier-salereturns-table-actionF">
@@ -170,22 +159,12 @@ const BlogList = () => {
                         key={item.id}
                         className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12"
                       >
-                        <div className="cashier-salereturns-table-dateF ml-5">
-                          <span className="capitalize"> {item.color} </span>
-                        </div>
-                       
-                        <div className="cashier-salereturns-table-dateF ml-5">
-                          <span className="capitalize"> {item.brand.title} </span>
-                        </div>
-                        <div className="cashier-salereturns-table-referenceF">
-                          <span className="capitalize"> {item.model.name} </span>
-                        </div> 
-                        <div className="cashier-salereturns-table-referenceF">
-                          <span className="capitalize"> {item.category.name_en} </span>
-                        </div>  
-                        <div className="cashier-salereturns-table-referenceF">
-                          <span className="capitalize"> {item.location.name} </span>
-                        </div>  
+                           <div className="cashier-salereturns-table-dateF ml-5">
+                            <span> {item.name_uz} </span>
+                          </div> 
+                          <div className="cashier-salereturns-table-customerF ml-5 ">
+                            <span>{item.name_en}</span>
+                          </div>
                         
 
                         <div className="cashier-salereturns-table-actionF">
