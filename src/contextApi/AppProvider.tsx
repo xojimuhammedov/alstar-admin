@@ -17,12 +17,12 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
-  const [token, setToken] = useState<string | null>(null);
+  const [token, setToken] = useState<string>('');
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Browserda ekanligimizni tekshiramiz
-      const accessToken = localStorage.getItem("accessToken");
+      const accessToken:any = localStorage.getItem("accessToken");
       setToken(accessToken);
     }
   }, []);
