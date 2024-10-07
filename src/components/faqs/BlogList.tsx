@@ -15,30 +15,9 @@ import apiUrl from "@/utils/api";
 
   interface dataType {
   id: string;
-  brand_id: string;
-  model_id: string;
-  city_id: string;
-  color?: string;
-  year: string;
-  seconds: string;
-  max_speed: string;
-  max_people: number;
-  transmission: string;
-  motor: string;
-  drive_side: string;
-  petrol: string;
-  limitperday: number;
-  deposit: number;
-  premium_protection: number;
-  price_in_aed: string;
-  price_in_usd: string;
-  category_id: string; 
-  brand: {title:string}
-  model: {name:string}
-  location: {name: string} 
-  category: {name_en: string} 
-  location_id: string;
-  created_at: string;  
+  name_uz: string;
+  name_en: string;
+
 }
 
 const BlogList = () => {
