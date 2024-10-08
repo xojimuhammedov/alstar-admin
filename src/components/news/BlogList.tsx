@@ -49,7 +49,7 @@ const BlogList = () => {
         if (res.data.success) {
           const remainingBlogs = blogs.filter((item) => item.id !== id);
           setBlogs(remainingBlogs);
-          toast.success(`Yangilik o'chirildi`, {
+          toast.success(`Loyiha o'chirildi`, {
             position: "top-left",
           });
         }

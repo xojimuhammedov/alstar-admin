@@ -57,7 +57,7 @@ const CreateServiceMain = () => {
         },
       })
       .then((res) => {
-            toast.success(`Yangilik yaratildi!🎉`, {
+            toast.success(`Loyiha yaratildi!🎉`, {
               position: "top-left",
             });
             reset();
