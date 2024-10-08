@@ -83,55 +83,15 @@ const BlogList = () => {
       .get(`${apiUrl}/news `)
       .then((res) => { 
         setBlogs(res.data.data);
-        setotalPages(res.data.totalPages);
-        setcurrentPage(res.data.currentPage);
       })
       .catch((e) => console.log(e));
-  }, [page, limit]);
+  }, []);
   // get search products
 
-  const pageLimitArray = [
-    {
-      id: 1,
-      value: 5,
-    },
-    {
-      id: 2,
-      value: 10,
-    },
-    {
-      id: 3,
-      value: 15,
-    },
-    {
-      id: 4,
-      value: 20,
-    },
-  ];
-
-  const selectHandler = () => {};
   return (
     <>
-      <div className="cashier-content-area mt-[30px] px-7">
+      <div className="cashier-content-area ml-[300px] mt-[30px] px-7">
         <div className="cashier-salereturns-area bg-white p-7 custom-shadow rounded-lg pt-5 mb-5">
-          <div className="cashier-table-header-search-area">
-            <div className="grid grid-cols-12 gap-x-5 mb-7 pb-0.5">
-              <div className="md:col-span-6 col-span-12">
-                <div className="cashier-table-header-search relative maxSm:mb-4">
-                  <input
-                    type="text"
-                    placeholder="Search List"
-                    value={searchValue}
-                    onChange={handleInputChange}
-                  />
-                  <span>
-                    <i className="fa-light fa-magnifying-glass"></i>
-                  </span>
-                </div>
-              </div>
-              
-            </div>
-          </div>
 
           {blogs.length ? (
             <>
@@ -140,13 +100,16 @@ const BlogList = () => {
                   <div className="cashier-salereturns-table-inner-wrapperD border border-solid border-grayBorder border-b-0 mb-7">
                     <div className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
                    
-                      <div className="cashier-salereturns-table-dateF  ml-5">
-                        <h5>Yangilik nomi</h5>
-                      </div>  
+                    <div style={{width:"320px"}} className="cashier-salereturns-table-dateF  ml-5">
+                        <h5>Loyiha nomi (Uzbek)</h5>
+                      </div>
+                      <div style={{width:"320px"}} className="cashier-salereturns-table-dateF  ml-5">
+                        <h5>Loyiha nomi (English)</h5>
+                      </div>
 
-                      <div className="cashier-salereturns-table-dateF  ml-5">
-                        <h5>Yangilik matni</h5>
-                      </div> 
+                      <div style={{width:"320px"}} className="cashier-salereturns-table-dateF  ml-5">
+                        <h5>Loyiha nomi (Russian)</h5>
+                      </div>
                       
 
                       <div className="cashier-salereturns-table-actionF">
@@ -160,15 +123,16 @@ const BlogList = () => {
                         className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12"
                       >
                        
-                        <div className="cashier-salereturns-table-dateF ml-5">
-                          <span className="capitalize"> {item.name_uz} </span>
-                        </div> 
+                       <div style={{width:"320px"}} className="cashier-salereturns-table-dateF ml-5">
+                          <span> {item.name_uz} </span>
+                        </div>
+                        <div style={{width:"320px"}} className="cashier-salereturns-table-customerF ml-5 ">
+                          <span>{item.name_en}</span>
+                        </div>
 
-                        <div className="cashier-salereturns-table-dateF ml-5">
-                          <span className="capitalize"> {item.text_uz} </span>
-                        </div> 
-                        
-                        
+                        <div style={{width:"320px"}} className="cashier-salereturns-table-customerF ml-5 ">
+                          <span>{item.name_ru}</span>
+                        </div>
 
                         <div className="cashier-salereturns-table-actionF">
                           <div className="dropdown">

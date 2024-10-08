@@ -74,7 +74,7 @@ const CreateServiceMain = () => {
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/collections/`)
+      .get(`${apiUrl}/collections?limit=1000`)
       .then((res) => {
         setBlogs(res.data.data);
         // setotalPages(res.data.totalPages);

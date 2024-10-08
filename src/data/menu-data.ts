@@ -90,4 +90,20 @@ export const menuData: MenuItem[] = [
       },
     ],
   },
+
+  {
+    id: 11,
+    text: "Loyiha",
+    icon: BlogIcon,
+    submenu: [
+      {
+        text: "Loyiha",
+        link: "/news",
+      },
+      {
+        text: "Loyiha yaratish",
+        link: "/create-news",
+      },
+    ],
+  },
 ];
