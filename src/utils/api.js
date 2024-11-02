@@ -1,3 +1,3 @@
-const apiUrl = "https://v2.centurysilkroadtravel.uz/api"
+const apiUrl = "https://test.al-muamalat.uz/api"
 
 export default apiUrl;
