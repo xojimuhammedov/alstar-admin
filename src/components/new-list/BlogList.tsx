@@ -80,7 +80,7 @@ const BlogList = () => {
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/news`)
+      .get(`${apiUrl}/news `)
       .then((res) => { 
         setBlogs(res.data.data);
       })

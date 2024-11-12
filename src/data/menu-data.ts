@@ -90,7 +90,6 @@ export const menuData: MenuItem[] = [
       },
     ],
   },
-
   {
     id: 11,
     text: "Loyiha",
@@ -106,4 +105,19 @@ export const menuData: MenuItem[] = [
       },
     ],
   },
+  // {
+  //   id: 12,
+  //   text: "Yangiliklar",
+  //   icon: BlogIcon,
+  //   submenu: [
+  //     {
+  //       text: "Yangiliklar",
+  //       link: "/new-list",
+  //     },
+  //     {
+  //       text: "Yangilik yaratish",
+  //       link: "/create-new-list",
+  //     },
+  //   ],
+  // },
 ];

@@ -37,12 +37,12 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (token) {
       axios
-        .get(`${"https://v2.centurysilkroadtravel.uz/api"}/auth/getme`, header)
+        .get(`${"https://test.al-muamalat.uz/api"}/auth/getme`, header)
         .then((res) => {
           console.log(res.data.data)
             const userinfo = res.data.data;
             setUser(userinfo);
-            setLoading(false);
+            setLoading(false);  
             router.push("/");
         })
         .catch((e) => {
